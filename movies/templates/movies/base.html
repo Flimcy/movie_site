@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Movie Streaming{% endblock %}</title>
+    
+    <!-- Conditional Styles -->
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    {% block header %}
+    <header>
+        <h1>FlimcyFlix</h1>
+    </header>
+    {% endblock %}
+
+    <!-- Page Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% block footer %}
+    <footer>
+        <p>&copy; 2024 FlimcyFlix. All Rights Reserved.</p>
+    </footer>
+    {% endblock %}
+</body>
+</html>

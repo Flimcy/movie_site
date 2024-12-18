@@ -1,0 +1,73 @@
+{% extends 'movies/base.html' %}
+{% load static %}
+
+{% block header %}
+<!-- No header content for the detail page -->
+{% endblock %}
+
+{% block footer %}
+<!-- No footer content for the detail page -->
+{% endblock %}
+
+{% block title %}Search Results{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="navbar">
+    <div class="navbar-logo">
+        <h1>FlimcyFlix</h1>
+    </div>
+    <nav>
+        <ul class="navbar-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">TV Shows</a></li>
+            <li><a href="#">My List</a></li>
+        </ul>
+    </nav>
+    <div class="navbar-search">
+        <form method="get" action="{% url 'search_movies' %}">
+            <input type="text" name="q" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <!-- Hamburger icon for mobile -->
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</header>
+
+<div class="home-container">
+    <h1>Search Results for "{{ query }}"</h1>
+
+    {% if results %}
+        <div class="movies-list">
+            {% for movie in results %}
+                <div class="movie-box">
+                    <a href="{% url 'movie_detail' movie.pk %}">
+                        <img src="{% if movie.thumbnail_file %}{{ movie.thumbnail_file.url }}{% else %}{{ movie.thumbnail_url }}{% endif %}" alt="{{ movie.title }}">
+                        <p>{{ movie.title }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No movies found matching your query.</p>
+    {% endif %}
+</div>
+
+{% block scripts %}
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            console.log("Ham pressed");
+            document.querySelector('.navbar-links').classList.toggle('active');
+            this.classList.toggle('open');
+        });
+    </script>
+{% endblock %}
+
+{% endblock %}

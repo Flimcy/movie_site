@@ -1,0 +1,81 @@
+{% extends 'movies/base.html' %}
+{% load static %}
+
+{% block title %}{{ movie.title }} - Details{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/details.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block content %}
+<header class="navbar">
+    <div class="navbar-logo">
+        <h1>FlimcyFlix</h1>
+    </div>
+    <nav>
+        <ul class="navbar-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">TV Shows</a></li>
+            <li><a href="#">My List</a></li>
+        </ul>
+    </nav>
+    <div class="navbar-search">
+        <form method="get" action="{% url 'search_movies' %}">
+            <input type="text" name="q" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</header>
+
+<body style="background-image: url('{% if movie.banner_url %}{{ movie.banner_url }}{% endif %}'); background-size: cover; background-position: center;">
+    <!-- Overlay Dark Layer -->
+    <div class="overlay"></div>
+
+    <div class="movie-detail-container">
+        <div class="movie-header">
+            <div class="movie-thumbnail">
+                <img src="{% if movie.thumbnail_file %}{{ movie.thumbnail_file.url }}{% else %}{{ movie.thumbnail_url }}{% endif %}" alt="{{ movie.title }}">
+            </div>
+            <div class="movie-info">
+                <h1>{{ movie.title }}</h1>
+                <p class="release-date"><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                <p class="rating"><strong>Rating:</strong> {{ movie.rating }}</p>
+                <p>{{ movie.description }}</p>
+                <div class="movie-links">
+                    <iframe src="{{ movie.trailer_link }}" width="600" height="340" allowfullscreen></iframe>
+                    <!-- <iframe src="{{ movie.watch_link }}" width="800" height="450" allowfullscreen></iframe> -->
+                    <iframe src="{{ movie.watch_link }}" 
+                        width="800" height="450" 
+                        allow="autoplay;" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% block scripts %}
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            console.log("Ham pressed");
+            document.querySelector('.navbar-links').classList.toggle('active');
+            this.classList.toggle('open');
+        });
+    </script>
+{% endblock %}
+{% endblock %}
