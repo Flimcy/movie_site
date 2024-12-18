@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-r2ul-56j%3n-f%prg7b7$&_fwani^mn-hes12uia&fqycy8dk(
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['flimcyflix.vercel.app', 'www.flimcyflix.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
