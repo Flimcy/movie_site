@@ -83,16 +83,16 @@ WSGI_APPLICATION = 'movie_site.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'flimcyflixdb',
-        'USER': 'AdminAcc',
-        'PASSWORD': 'Admin!12SU!$',
-        'HOST': 'flimcyflix.c50weqi4ojpc.ap-southeast-2.rds.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'flimcyflixdb',
+#         'USER': 'AdminAcc',
+#         'PASSWORD': 'Admin!12SU!$',
+#         'HOST': 'flimcyflix.c50weqi4ojpc.ap-southeast-2.rds.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
